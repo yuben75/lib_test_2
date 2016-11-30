@@ -1,0 +1,5 @@
+*.o
+libtest.a
+libtest.so
+test_a
+tesa_so
