@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="prj_CodeBlocks" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/prj_CodeBlocks" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-lComm_Msg" />
+					<Add library="../../prj_80618_Library/Comm_Msg/lib_shared/Debug/libComm_Msg.so" />
+					<Add directory="../../prj_80618_Library/Comm_Msg/lib/Debug" />
+					<Add directory="../../prj_80618_Library/Comm_Msg/lib_shared/Debug" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cp ./bin/Debug/prj_CodeBlocks ../exe/Debug/80618" />
+				</ExtraCommands>
+				<Environment>
+					<Variable name="LD_LIBRARY_PATH" value="/root/80618/prj_80618_Library/Comm_Msg/lib_shared/Debug" />
+				</Environment>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/prj_CodeBlocks" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lComm_Msg" />
+					<Add directory="../../prj_80618_Library/Comm_Msg/lib/Release" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cp ./bin/Release/prj_CodeBlocks ../exe/Release/80618" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="../../prj_80618_Library/Comm_Msg/inc" />
+		</Compiler>
+		<Unit filename="../src/main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
