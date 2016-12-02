@@ -4,3 +4,4 @@ libtest.a
 libtest.so
 test_a
 tesa_so
+test_so_cpp

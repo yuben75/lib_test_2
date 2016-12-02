@@ -11,3 +11,7 @@ echo "shared(.so) execute...."
 
 echo "static(.a) execute...."
 ./test_a
+
+
+echo "shared(.so) c++ execute...."
+./test_so_cpp
