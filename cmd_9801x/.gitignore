@@ -1,0 +1,6 @@
+*~
+*.o
+.release_time
+build
+bin
+server
