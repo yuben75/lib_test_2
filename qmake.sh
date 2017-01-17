@@ -1,44 +1,74 @@
 #!/bin/bash
 
+
+
 DIR_TOP=$(cd `dirname $0` ; pwd)
 echo ${DIR_TOP}
-cd /sitara/ti-sdk-am335x-evm/linux-devkit/
-. ./environment-setup
+
+
+if [ $1 = "-d" ]; then
+    echo "debug build.."
+    unset QMAKESPEC  
+    echo "QMAKESPEC=" $QMAKESPEC
+    QDEFINE=$QMAKESPEC
+elif [ $1 = "-r" ]; then
+    echo "relrese build.."   
+    cd /sitara/ti-sdk-am335x-evm/linux-devkit/
+    . ./environment-setup
+    unset QMAKESPEC  
+    echo "QMAKESPEC=" $QMAKESPEC
+    QDEFINE=$QMAKESPEC
+else
+    echo "error build.."
+    exit -1
+fi 
+
+echo
+
 cd ${DIR_TOP}
 
 
 #######################################################################################
 # app_Comm_Msg.pro to Makefile
 #######################################################################################
-#qmake -project
-#mv Comm_Msg.pro app_Comm_Msg.pro  
-#modify to app pro. TEMPLATE = app
-if [ $1 = "app" ]; then
-	echo "app Makefile."
-	qmake -o Makefile app_Comm_Msg.pro
-	time make
+qmake -project
+#copy Comm_Msg.pro the DEPENDPATH, INCLUDEPATH, HEADERS, SOURCES to QComm_Msg.pro  
+if [ $2 = "-app" ]; then
+    echo "app Makefile."
+    if [ $1 = "-d" ]; then
+    	qmake QDEFS=x86_app -o Makefile QComm_Msg.pro
+    elif [ $1 = "-r" ]; then
+ 	qmake QDEFS=arm_app -o Makefile QComm_Msg.pro
+    fi
+    time make
 fi
 #######################################################################################
 # libso_Comm_Msg.pro to Makefile
 #######################################################################################
-#qmake -project
-#mv Comm_Msg.pro libso_Comm_Msg.pro  
-#modify to shared library pro. TEMPLATE = lib
-if [ $1 = "so" ]; then
-	echo "shared library Makefile."
-	qmake -o Makefile libso_Comm_Msg.pro
-	time make
+qmake -project
+#copy Comm_Msg.pro the DEPENDPATH, INCLUDEPATH, HEADERS, SOURCES to QComm_Msg.pro  
+if [ $2 = "-libshared" ]; then
+    echo "shared library Makefile."
+    if [ $1 = "-d" ]; then
+    	qmake QDEFS=x86_sharedlib -o Makefile QComm_Msg.pro
+    elif [ $1 = "-r" ]; then
+ 	qmake QDEFS=arm_sharedlib -o Makefile QComm_Msg.pro
+    fi
+    time make
 fi
 #######################################################################################
 # liba_Comm_Msg.pro to Makefile
 #######################################################################################
-#qmake -project
-#mv Comm_Msg.pro liba_Comm_Msg.pro  
-#modify to statuc library pro. TEMPLATE = lib CONFIG += staticlib
-if [ $1 = "a" ]; then
-	echo "static library Makefile."
-	qmake -o Makefile liba_Comm_Msg.pro
-	time make
+qmake -project
+#copy Comm_Msg.pro the DEPENDPATH, INCLUDEPATH, HEADERS, SOURCES to QComm_Msg.pro  
+if [ $2 = "-libstatic" ]; then
+    echo "static library Makefile."
+    if [ $1 = "-d" ]; then
+    	qmake QDEFS=x86_staticlib -o Makefile QComm_Msg.pro
+    elif [ $1 = "-r" ]; then
+ 	qmake QDEFS=arm_staticlib -o Makefile QComm_Msg.pro
+    fi
+    time make
 fi
 
 
