@@ -58,8 +58,11 @@ cd ${DIR_TOP}
 #######################################################################################
 # generate Makefile and make
 #######################################################################################
-qmake QDEFS=$DEFS QTARGET_NAME=$BASENAME -o Makefile $QPRO_NAME
-time make
+qmake QDEFS=$DEFS QTARGET_NAME=$BASENAME -o Makefile $QPRO_NAME || exit 1
+time make || exit 1
+
+echo ""
+echo $BASENAME "build ok"
 exit 0
 
 

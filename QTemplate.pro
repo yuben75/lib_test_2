@@ -66,7 +66,6 @@ SOURCES +=
 # 
 #########################################################################################
 CONFIG -= qt
-#CONFIG += static
 #message("CONFIG = "$$CONFIG)
 
 QMAKE_CXXFLAGS += $$(CXXFLAGS)
@@ -75,6 +74,7 @@ QMAKE_LFLAGS += $$(LDFLAGS)
 QMAKE_LFLAGS += "-ldl"
 QMAKE_LFLAGS += "-lrt"
 QMAKE_LFLAGS += -Wl,-Map=xxx.map
+#QMAKE_LFLAGS += -static
 QMAKE_CFLAGS += -fmax-errors=1
 
 # add the desired -O3 if not present
